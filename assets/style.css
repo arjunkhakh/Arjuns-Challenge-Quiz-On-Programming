@@ -6,6 +6,8 @@ h1 {
 button {
     background-color: gold;
     border: 2px solid black;
+    padding: 20px;
+    font-size: large;
 }
 
 button:hover{
@@ -21,7 +23,17 @@ header {
 
 body {
     text-align: center;
-    font-size: large;
+    font-size: 20px;
+}
+
+#quiz1 {
+    font-size: 50px;
+}
+
+#timer {
+    text-align: right;
+    position: absolute;
+    font-size: 40px;
 }
 
 ul {
