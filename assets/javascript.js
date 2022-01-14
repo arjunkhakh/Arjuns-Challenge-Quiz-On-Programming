@@ -19,13 +19,7 @@ var questions = [
 },
 ];
 
-var secondsLeft = 90;
-
-function score(event) {
-    event.preventDefault();
-
-    scoreEl.textContent = "Please put in initials";
-}
+var secondsLeft = 10;
 
 function setTime(event) {
   // Sets interval in variable
@@ -42,8 +36,24 @@ function setTime(event) {
   }, 1000);
 }
 
+function score() {
+    // var scoreboardEl = document.createElement("li");
+    // scoreboardEl.setAttribute("style", "font-size:40px");
+
+    // scoreEl.style.display = "block";
+    // scoreboardEl.style.display = "block";
+
+    // scoreEl.textContent = "Please put in initials";
+
+    // quiz1.append(scoreboardEl);
+    // quiz1.append(scoreEl);
+
+    scoreEl.style.display = "block";
+}
+
+
 button.addEventListener("click", function(event) {
-    var firstQuestion = questions [0];
+    var firstQuestion = questions[0];
     quiz1.textContent = firstQuestion.question;
     quiz1.setAttribute("data-index", firstQuestion.correctAnswerIndex);
 
@@ -75,9 +85,13 @@ quiz1.addEventListener("click", function (event) {
         var selectedAnswerIndex = elementClicked.getAttribute("data-index");
 
         if (rightAnswerIndex === selectedAnswerIndex) {
-            alert("You selected the right answer!");
+            //alert("You selected the right answer!");
+            questions.question++;
+            questions.answer++;
     } else {
-        alert("You have selected the wrong one!")
+        // alert("You have selected the wrong one!")
+        questions.question++;
+        questions.answer++;
     }
 }
 });

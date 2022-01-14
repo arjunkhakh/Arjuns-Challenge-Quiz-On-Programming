@@ -36,6 +36,12 @@ body {
     font-size: 40px;
 }
 
+#score {
+    display: none;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
 ul {
     list-style: none;
     margin-left: 0%;
