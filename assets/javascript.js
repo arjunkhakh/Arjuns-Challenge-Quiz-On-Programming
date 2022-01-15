@@ -1,3 +1,5 @@
+// Variables
+
 var button = document.querySelector("#buttonGame");
 
 var quiz1 = document.querySelector("#quiz1")
@@ -16,6 +18,7 @@ var scoreboard = document.querySelector("#highscore")
 
 var newQuestion = 0;
 
+// Questions Array
 var questions = [
 {
     question: "What Tag is used for a hyperlink?",
@@ -28,6 +31,9 @@ var questions = [
     correctAnswerIndex: 2,
 },
 ];
+
+
+// Variable for Timer and Function for Timer
 
 var secondsLeft = 30;
 
@@ -47,20 +53,12 @@ function setTime(event) {
   }, 1000);
 }
 
+// Function for the score input form to show up
 function score() {
-    // var scoreboardEl = document.createElement("li");
-    // scoreboardEl.setAttribute("style", "font-size:40px");
-
-    // scoreEl.style.display = "block";
-    // scoreboardEl.style.display = "block";
-
-    // scoreEl.textContent = "Please put in initials";
-
-    // quiz1.append(scoreboardEl);
-    // quiz1.append(scoreEl);
-
     scoreEl.style.display = "block";
 }
+
+// The Answer buttons for when an answer is pressed during a question
 
 button.addEventListener("click", function(event) {
     var firstQuestion = questions[0];
@@ -87,6 +85,8 @@ button.addEventListener("click", function(event) {
 }
 )
 
+// The Start Button for starting the quiz
+
 quiz1.addEventListener("click", function (event) {
     var elementClicked = event.target;
 
@@ -96,6 +96,7 @@ quiz1.addEventListener("click", function (event) {
         var selectedAnswerIndex = elementClicked.getAttribute("data-index");
 
         if (rightAnswerIndex === selectedAnswerIndex) {
+            
             alert("You selected the right answer!");
            
             while (newQuestion < questions.length) {
@@ -105,6 +106,7 @@ quiz1.addEventListener("click", function (event) {
 
             
     } else {
+
         alert("You have selected the wrong one!")
 
         while (newQuestion < questions.length) {
@@ -115,6 +117,8 @@ quiz1.addEventListener("click", function (event) {
 }
 });
 
+// Submission Button to store initials in Local Storage
+
 inSubmit.addEventListener("click", function (){
 
     let initValue = initials.value;
@@ -124,7 +128,7 @@ inSubmit.addEventListener("click", function (){
         highScores = JSON.parse(localStorage.getItem("initals")) || [];
         highScores.push(userScore)
         localStorage.setItem("initals", JSON.stringify(highScores));
-        // highScoreBoard();
+        
     }
 
     if(scoreboard){
@@ -136,27 +140,6 @@ inSubmit.addEventListener("click", function (){
         scoreboard.append(TheScore);
     }
 
-    // for (let index = 0; index < array.length; index++) {
-    //     const element = array[index];
-        
-    //     var nameEl = scoreboard.createElement("li");
 
-    //     nameEl.textContent = initValue;
-    // }
-    
     }
 )
-
-// function highScoreBoard() {
-
-//     if(scoreboard){
-//         var userScore = { username: initValue };
-//         var TheScore = JSON.stringify(localStorage.getItem(userScore.username))
-
-//         scoreboard.createElement("li")
-//         scoreboard.textContent = TheScore;
-//         scoreboard.setAttribute("data-index", TheScore);
-
-//         scoreboard.append(TheScore);
-//     }
-// }
