@@ -6,6 +6,16 @@ var timeEl = document.querySelector("#timer")
 
 var scoreEl = document.querySelector("#score")
 
+var startup = document.querySelector("#startUp")
+
+var initials = document.querySelector("#initals")
+
+var inSubmit = document.querySelector("#initialSubmit")
+
+var scoreboard = document.querySelector("#highscore")
+
+var newQuestion = 0;
+
 var questions = [
 {
     question: "What Tag is used for a hyperlink?",
@@ -13,19 +23,20 @@ var questions = [
     correctAnswerIndex: 0,
 },
 {
-    question: "What is the best car company?",
-    answers: ["Tesla","Tesla","Tesla", "Tesla"],
+    question: "What do we put inside the () brackets when we call a function?",
+    answers: ["String","Variable","Parameter", "Leave as Blank"],
     correctAnswerIndex: 2,
 },
 ];
 
-var secondsLeft = 10;
+var secondsLeft = 30;
+
 
 function setTime(event) {
   // Sets interval in variable
   var timerInterval = setInterval(function() {
     secondsLeft--;
-    timeEl.textContent = secondsLeft + " seconds left.";
+    timeEl.textContent = secondsLeft + " Seconds Remaining";
 
     if(secondsLeft === 0) {
         clearInterval(timerInterval)
@@ -51,7 +62,6 @@ function score() {
     scoreEl.style.display = "block";
 }
 
-
 button.addEventListener("click", function(event) {
     var firstQuestion = questions[0];
     quiz1.textContent = firstQuestion.question;
@@ -73,6 +83,7 @@ button.addEventListener("click", function(event) {
         quiz1.setAttribute("style", "margin:20px")
     }
     setTime()
+    startup.style.display = "none";
 }
 )
 
@@ -85,14 +96,67 @@ quiz1.addEventListener("click", function (event) {
         var selectedAnswerIndex = elementClicked.getAttribute("data-index");
 
         if (rightAnswerIndex === selectedAnswerIndex) {
-            //alert("You selected the right answer!");
-            questions.question++;
-            questions.answer++;
+            alert("You selected the right answer!");
+           
+            while (newQuestion < questions.length) {
+                console.log("Well Done")
+                quiz1.textContent = questions[newQuestion++];
+            }
+
+            
     } else {
-        // alert("You have selected the wrong one!")
-        questions.question++;
-        questions.answer++;
+        alert("You have selected the wrong one!")
+
+        while (newQuestion < questions.length) {
+                console.log("Wrong!")
+                quiz1.textContent = questions[newQuestion++];
+        }
     }
 }
 });
 
+inSubmit.addEventListener("click", function (){
+
+    let initValue = initials.value;
+    if (initValue) {
+        var userScore = { username: initValue };
+        initials.value = '';
+        highScores = JSON.parse(localStorage.getItem("initals")) || [];
+        highScores.push(userScore)
+        localStorage.setItem("initals", JSON.stringify(highScores));
+        // highScoreBoard();
+    }
+
+    if(scoreboard){
+        var TheScore = JSON.stringify(localStorage.getItem(userScore.username))
+
+        scoreboard.textContent = TheScore;
+        scoreboard.setAttribute("data-index", TheScore);
+
+        scoreboard.append(TheScore);
+    }
+
+    // for (let index = 0; index < array.length; index++) {
+    //     const element = array[index];
+        
+    //     var nameEl = scoreboard.createElement("li");
+
+    //     nameEl.textContent = initValue;
+    // }
+    
+    }
+)
+
+// function highScoreBoard() {
+
+//     if(scoreboard){
+//         var userScore = { username: initValue };
+//         var TheScore = JSON.stringify(localStorage.getItem(userScore.username))
+
+//         scoreboard.createElement("li")
+//         scoreboard.textContent = TheScore;
+//         scoreboard.setAttribute("data-index", TheScore);
+
+//         scoreboard.append(TheScore);
+//     }
+// }
